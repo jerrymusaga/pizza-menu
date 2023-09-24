@@ -60,10 +60,12 @@ export default function App() {
 function Pizza(props) {
   return (
     <div>
-      <img src={props.pizzaObj.photoName} alt={props.pizzaObj.name} />
-      <h3>{props.pizzaObj.name}</h3>
-      <p>{props.pizzaObj.ingredients}</p>
-      <span>{props.pizzaObj.price}</span>
+      <li className={`pizza ${props.pizzaObj.soldOut ? "sold-out" : ""}`}>
+        <img src={props.pizzaObj.photoName} alt={props.pizzaObj.name} />
+        <h3>{props.pizzaObj.name}</h3>
+        <p>{props.pizzaObj.ingredients}</p>
+        <span>{props.pizzaObj.price}</span>
+      </li>
     </div>
   );
 }
@@ -99,11 +101,13 @@ function Footer() {
 
   return (
     <footer className="footer">
-      {isOpen && (
+      {isOpen ? (
         <div className="order">
           <p>We are opened until {closeHour}:00.</p>
           <button className="btn">Order</button>
         </div>
+      ) : (
+        <p>Sorry! We are currently closed. Check back at {openHour}</p>
       )}
     </footer>
   );
